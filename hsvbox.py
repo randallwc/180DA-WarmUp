@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
-# https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_colorspaces/py_colorspaces.html
+# https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html
+# https://docs.opencv.org/4.x/d4/dc6/tutorial_py_template_matching.html
 # https://docs.opencv.org/4.x/dd/d49/tutorial_py_contour_features.html
 
 import cv2
