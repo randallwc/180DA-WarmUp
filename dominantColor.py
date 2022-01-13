@@ -52,7 +52,7 @@ while(1):
     histogram = find_histogram(cluster)
     bar = plot_colors2(histogram, cluster.cluster_centers_)
     cv2.imshow('frame',frame)
-    cv2.imshow('bar',bar)
+    cv2.imshow('bar',cv2.cvtColor(bar, cv2.COLOR_RGB2BGR))
     sleep(0.1)
     k = cv2.waitKey(5) & 0xFF
     if k == 27:
