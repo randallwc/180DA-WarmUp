@@ -4,6 +4,7 @@
 # https://docs.opencv.org/4.x/dd/d49/tutorial_py_contour_features.html
 # https://github.com/opencv/opencv/blob/master/samples/python/kmeans.py
 # https://code.likeagirl.io/finding-dominant-colour-on-an-image-b4e075f98097
+# https://stackoverflow.com/questions/39316447/opencv-giving-wrong-color-to-colored-images-on-loading
 
 import cv2
 import numpy as np
