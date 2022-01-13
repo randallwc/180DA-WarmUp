@@ -10,3 +10,5 @@ William Randall
 ![](task4.2.png)
 ![](task4.31.png)
 ![](task4.32.png)
+![](task4.41.png)
+![](task4.42.png)
