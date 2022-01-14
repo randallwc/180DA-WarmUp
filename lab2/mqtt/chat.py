@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 import paho.mqtt.client as mqtt
-from time import sleep
 from sys import argv
 
 if len(argv) != 4:
@@ -16,9 +15,10 @@ subscribe = argv[1]
 publish = argv[2]
 qos = int(argv[3])
 requestForInput = 'enter message (q to quit): '
+name = str(input('what is your name?: '))
 
 def on_connect(client, userdata, flags, rc):
-    print("\nConnection returned result: "+str(rc)+'\n'+requestForInput,end='')
+    print("\x1b[1K\rConnection returned result: "+str(rc)+'\n'+requestForInput,end='')
     client.subscribe(subscribe, qos=qos)
 
 def on_disconnect(client, userdata, rc):
@@ -28,7 +28,7 @@ def on_disconnect(client, userdata, rc):
         print('Expected Disconnect')
 
 def on_message(client, userdata, message):
-    print('\nReceived message: "' + str(message.payload.decode()) + '" on topic "' + message.topic + '" with QoS ' + str(message.qos) + '\n' + requestForInput, end='')
+    print(f'\x1b[1K\r==={message.topic}:{message.qos}===\n{str(message.payload.decode())}\n===\n{requestForInput}', end='')
 
 # 1. create a client instance.
 client = mqtt.Client()
@@ -50,7 +50,7 @@ while True: # perhaps add a stopping condition using some break or something.
     s = str(input(requestForInput))
     if s == 'q':
         break
-    client.publish(publish, s, qos=qos)
+    client.publish(publish,f'{name}: {s}', qos=qos)
 # use subscribe() to subscribe to a topic and receive messages.
 # use publish() to publish messages to the broker.
 # use disconnect() to disconnect from the broker.
