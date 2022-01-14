@@ -15,7 +15,7 @@ qos = argv[3] # default is 1''')
 subscribe = argv[1]
 publish = argv[2]
 qos = int(argv[3])
-requestForInput = 'enter message (q to quit):'
+requestForInput = 'enter message (q to quit): '
 
 def on_connect(client, userdata, flags, rc):
     print("\nConnection returned result: "+str(rc)+'\n'+requestForInput,end='')
