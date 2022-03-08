@@ -10,10 +10,12 @@ class VoiceIface:
         self.r.dynamic_energy_threshold = False
         self.heard_william = False
 
-    def listen(self):
+    async def listen(self):
+        print('begin listen function')
         with sr.Microphone() as source:
             print('listening ... ', flush=True)
-            audio = self.r.listen(source, timeout=5)
+            # audio = await asyncio.get_event_loop().run_in_executor(self.r.listen(source, timeout=5))
+            audio = await self.r.listen(source, timeout=5)
             print('done listening')
         try:
             heard = self.r.recognize_google(audio)
@@ -31,13 +33,15 @@ class VoiceIface:
             print('you said william')
             self.heard_william = False
 
+async def main():
+    v = VoiceIface()
+    while True:
+        print('loop')
+        v.listen()  # blocks
+        v.said_william()
+        await asyncio.sleep(5)
 
-v = VoiceIface()
-while True:
-    print('loop')
-    v.listen()  # blocks
-    v.said_william()
-    sleep(5)
+asyncio.run(main())
 
 '''
 what i want the output to look like
