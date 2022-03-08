@@ -9,10 +9,12 @@ while(1):
     # Take each frame
     _, frame = cap.read()
     img_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-    template = cv.imread('carmex.png',0)
+    # template = cv.imread('carmex.png',0)
+    # template = cv.imread('charge.png',0)
+    template = cv.imread('ball.png',0)
     w,h = template.shape[::-1]
     res = cv.matchTemplate(img_gray,template,cv.TM_CCOEFF_NORMED)
-    threshold = 0.75
+    threshold = 0.6
     loc = np.where( res >= threshold )
     for pt in zip(*loc[::-1]):
         cv.rectangle(frame, pt, (pt[0] + w, pt[1]+h), (0,0,255), 2)
@@ -20,6 +22,6 @@ while(1):
 
     # close window
     k = cv.waitKey(5) & 0xFF
-    if k == 27:
+    if k == ord('q'):
         break
 cv.destroyAllWindows()
